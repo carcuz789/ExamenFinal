@@ -15,13 +15,16 @@ import java.util.Scanner;
  * @author Rodrigo Carcuz
  */
 public class ExamenFinal {
- 
+static String preorden="",postorden="",inorden="";
+static int estpre=0,estpre1=0;
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
        int[] VectorArb= new int[100];
        String[] Vectorusu= new String[100];
+       
        int cont=0;
        int estado =0;
         // TODO code application logic here
@@ -102,6 +105,9 @@ public class ExamenFinal {
                    break;
                case 2:
                    Imprimir(VectorArb,Vectorusu);
+                   imprimir_preorden(VectorArb,Vectorusu);
+                   imprimir_postorden(VectorArb,Vectorusu);
+                   imprimir_inorden(VectorArb,Vectorusu);
                    break;
                 case 3:
                    System.out.println("Has seleccionado la opcion 3");
@@ -116,6 +122,141 @@ public class ExamenFinal {
        }   
         
     }
+    private static void imprimir_inorden(int[]vectorcar,String[] vectorus){
+          try{
+            String ruta ="inorden.txt";
+            File file = new File(ruta);
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write("digraph G { ");
+            bw.write("rankdir=\"LR\";");
+            inorden(vectorcar,0);
+            inorden+="fin ;";
+            bw.write(inorden);
+             
+            bw.write("}");
+            bw.close();
+             try {
+                       String  cmd = "dot -Tpng inorden.txt -o inorden.jpg";
+                      // String cmd2 ="C:\\Users\\Rodrigo Carcuz\\Desktop\\ExamenFinal\\preorden.jpg";
+                        Runtime.getRuntime().exec(cmd);
+                        //Runtime.getRuntime().exec(cmd2);
+             } catch (IOException ioe) {
+    	System.out.println (ioe);
+            }
+        }catch(Exception e){
+            
+        }
+          estpre1=0;
+    }
+    private static void inorden(int[]vectorcar,int num){
+      try{
+          
+           if (vectorcar[estpre1]!=0) {
+              estpre1=2*num+1;
+              preorde(vectorcar,estpre1);
+               inorden+=vectorcar[estpre1]+"->";
+              estpre1=2*num+2;
+              preorde(vectorcar,estpre1);
+            
+          }else{
+               estpre1++;
+           }
+              
+      }catch(Exception e){
+          
+      }
+    }
+    private static void imprimir_postorden(int[]vectorcar,String[] vectorus){
+          try{
+            String ruta ="postorden.txt";
+            File file = new File(ruta);
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write("digraph G { ");
+            bw.write("rankdir=\"LR\";");
+            posorde(vectorcar,0);
+            postorden+="fin ;";
+            bw.write(postorden);
+             
+            bw.write("}");
+            bw.close();
+             try {
+                       String  cmd = "dot -Tpng postorden.txt -o postorden.jpg";
+                      // String cmd2 ="C:\\Users\\Rodrigo Carcuz\\Desktop\\ExamenFinal\\preorden.jpg";
+                        Runtime.getRuntime().exec(cmd);
+                        //Runtime.getRuntime().exec(cmd2);
+             } catch (IOException ioe) {
+    	System.out.println (ioe);
+            }
+        }catch(Exception e){
+            
+        }
+          estpre1=0;
+    }
+     private static void posorde(int[]vectorcar,int num){
+      try{
+          if (vectorcar[estpre1]!=0) {
+              estpre1=2*num+1;
+              preorde(vectorcar,estpre1);
+              estpre1=2*num+2;
+              preorde(vectorcar,estpre1);
+              postorden+=vectorcar[estpre1]+"->";
+          }else{
+              estpre1++;
+          }
+           
+              
+      }catch(Exception e){
+          
+      }
+    }
+    
+    private static void imprimir_preorden(int[]vectorcar,String[] vectorus){
+        try{
+            String ruta ="preorden.txt";
+            File file = new File(ruta);
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write("digraph G { ");
+            bw.write("rankdir=\"LR\";");
+            preorde(vectorcar,0);
+            preorden+="fin ;";
+            bw.write(preorden);
+             
+            bw.write("}");
+            bw.close();
+             try {
+                       String  cmd = "dot -Tpng preorden.txt -o preorden.jpg";
+                      // String cmd2 ="C:\\Users\\Rodrigo Carcuz\\Desktop\\ExamenFinal\\preorden.jpg";
+                        Runtime.getRuntime().exec(cmd);
+                        //Runtime.getRuntime().exec(cmd2);
+             } catch (IOException ioe) {
+    	System.out.println (ioe);
+            }
+        }catch(Exception e){
+            
+        }
+        estpre1=0;
+    }
+    private static void preorde(int[]vectorcar,int num){
+      try{
+          if (vectorcar[estpre1]!=0) {
+              preorden+=vectorcar[estpre1]+"->";
+              estpre1=2*num+1;
+              preorde(vectorcar,estpre1);
+              estpre1=2*num+2;
+              preorde(vectorcar,estpre1);
+          }else{
+              estpre1++;
+          }
+              
+           
+      }catch(Exception e){
+          
+      }
+    }
+    
 
     private static void Imprimir(int[]vectorcar,String[] vectorus) {
         int i=0;
@@ -169,7 +310,7 @@ public class ExamenFinal {
         }    
             try {
                        String  cmd = "dot -Tpng Arbol.txt -o GraficaArbol.jpg";
-                       String cmd2 ="GraficaArbol.jpg";
+                       String cmd2 ="C:\\Users\\Rodrigo Carcuz\\Desktop\\ExamenFinal\\GraficaArbol.jpg";
                 	Runtime.getRuntime().exec(cmd);
                         Runtime.getRuntime().exec(cmd2);
              } catch (IOException ioe) {
