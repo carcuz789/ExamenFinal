@@ -39,7 +39,7 @@ public class ExamenFinal {
             
            System.out.println("Escribe una de las opciones");
            opcion = sn.nextInt();
-            
+           
            switch(opcion){
                case 1:
                    
@@ -136,29 +136,45 @@ public class ExamenFinal {
                 }
               }
             int con=0;
-            for (int j = 0; j < aux.length; j++) {
-                if (aux[con]!=0) {
-                    if (aux[con*2+1]!=0) {
-                        if (aux[con*2+1]!=4444) {
-                             bw.write(aux[con]+"->"+aux[con*2+1]+";\n");
+            for (int j = 0; j < vectorcar.length; j++) {
+                if (vectorcar[con]!=0) {
+                    try{
+                    if (vectorcar[con*2+1]!=0) {
+                        if (vectorcar[con*2+1]!=4444) {
+                             bw.write(vectorcar[con]+"->"+vectorcar[con*2+1]+";\n");
                         }                       
                     }
-                    if (aux[con*2+2]!=0) {
-                        if (aux[con*2+2]!=4444) {
-                             bw.write(aux[con]+"->"+aux[con*2+2]+";\n"); 
+                    if (vectorcar[con*2+2]!=0) {
+                        if (vectorcar[con*2+2]!=4444) {
+                             bw.write(vectorcar[con]+"->"+vectorcar[con*2+2]+";\n"); 
                         }
                        
-                    }                   
-                    
+                    }                     
+                    }catch(Exception e){
+                        
+                    }
+                      
+                   con++; 
+                }else{
+                    con++;
                 }
                  
             }
             
+            
             bw.write("}");
             bw.close();
         }catch(Exception e){
-            
-        }        
+            System.out.println (e);
+        }    
+            try {
+                       String  cmd = "dot -Tpng Arbol.txt -o GraficaArbol.jpg";
+                       String cmd2 ="GraficaArbol.jpg";
+                	Runtime.getRuntime().exec(cmd);
+                        Runtime.getRuntime().exec(cmd2);
+             } catch (IOException ioe) {
+    	System.out.println (ioe);
+            }
     }
     
     void CrearHTML(){
