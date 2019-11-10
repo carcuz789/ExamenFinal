@@ -156,9 +156,11 @@ static int estpre=0,estpre1=0;
              inorden+=vectorcar[2*num+1]+"->";
               inorden+=vectorcar[num]+"->";
                inorden+=vectorcar[2*num+2]+"->";
-                estpre++;
-              preorde(vectorcar,estpre1);
-            
+                estpre1++;
+              
+               if (estpre1<100) {
+                   inorden(vectorcar,estpre1);
+               }
           }else{
                estpre1++;
            }
@@ -203,7 +205,10 @@ static int estpre=0,estpre1=0;
                postorden+=vectorcar[2*num+2]+"->";
                 postorden+=vectorcar[num]+"->";
                estpre1++;
-              preorde(vectorcar,estpre1);
+               if (estpre1<100) {
+                   posorde(vectorcar,estpre1);
+              }
+             
              
           }else{
               estpre1++;
