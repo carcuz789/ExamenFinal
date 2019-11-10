@@ -127,25 +127,38 @@ public class ExamenFinal {
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write("digraph G {");
             
-            for (int j = 0; j < vectorcar.length; j++) {
-                bw.write(vectorcar[j]+"[ shape=record, label= \"<C0>| carnet = "+vectorcar[j]+"\n nombre = "+vectorus[j]+"|<C1>\"];\n");
-            }
+             for (int j = 0; j < vectorcar.length; j++) {
+                if (vectorcar[j]!=0) {
+                    if (vectorcar[j]!=4444) {
+                       bw.write(vectorcar[j]+"[ shape=record, label= \"<C0>| carnet = "+vectorcar[j]+"\n nombre = "+vectorus[j]+"|<C1>\"];\n");
+               
+                    }                    
+                }
+              }
             int con=0;
-            do {
-                int der =derecha(con);
-                int izq = izquierda(con);
-                
-            } while (0<vectorcar.length);
+            for (int j = 0; j < aux.length; j++) {
+                if (aux[con]!=0) {
+                    if (aux[con*2+1]!=0) {
+                        if (aux[con*2+1]!=4444) {
+                             bw.write(aux[con]+"->"+aux[con*2+1]+";\n");
+                        }                       
+                    }
+                    if (aux[con*2+2]!=0) {
+                        if (aux[con*2+2]!=4444) {
+                             bw.write(aux[con]+"->"+aux[con*2+2]+";\n"); 
+                        }
+                       
+                    }                   
+                    
+                }
+                 
+            }
             
             bw.write("}");
             bw.close();
         }catch(Exception e){
             
-        }
-        
-        //creamos los nodos
-        
-        
+        }        
     }
     
     void CrearHTML(){
