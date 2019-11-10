@@ -152,11 +152,11 @@ static int estpre=0,estpre1=0;
     private static void inorden(int[]vectorcar,int num){
       try{
           
-           if (vectorcar[estpre1]!=0) {
-              estpre1=2*num+1;
-              preorde(vectorcar,estpre1);
-               inorden+=vectorcar[estpre1]+"->";
-              estpre1=2*num+2;
+           if (vectorcar[num]!=0) {
+             inorden+=vectorcar[2*num+1]+"->";
+              inorden+=vectorcar[num]+"->";
+               inorden+=vectorcar[2*num+2]+"->";
+                estpre++;
               preorde(vectorcar,estpre1);
             
           }else{
@@ -196,12 +196,15 @@ static int estpre=0,estpre1=0;
     }
      private static void posorde(int[]vectorcar,int num){
       try{
-          if (vectorcar[estpre1]!=0) {
-              estpre1=2*num+1;
+          if (vectorcar[num]!=0) {
+              
+               postorden+=vectorcar[2*num+1]+"->";
+              
+               postorden+=vectorcar[2*num+2]+"->";
+                postorden+=vectorcar[num]+"->";
+               estpre1++;
               preorde(vectorcar,estpre1);
-              estpre1=2*num+2;
-              preorde(vectorcar,estpre1);
-              postorden+=vectorcar[estpre1]+"->";
+             
           }else{
               estpre1++;
           }
