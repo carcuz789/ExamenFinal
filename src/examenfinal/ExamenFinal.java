@@ -130,7 +130,12 @@ public class ExamenFinal {
             for (int j = 0; j < vectorcar.length; j++) {
                 bw.write(vectorcar[j]+"[ shape=record, label= \"<C0>| carnet = "+vectorcar[j]+"\n nombre = "+vectorus[j]+"|<C1>\"];\n");
             }
-           
+            int con=0;
+            do {
+                int der =derecha(con);
+                int izq = izquierda(con);
+                
+            } while (0<vectorcar.length);
             
             bw.write("}");
             bw.close();
