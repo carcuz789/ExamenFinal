@@ -153,9 +153,9 @@ static int estpre=0,estpre1=0;
       try{
           
            if (vectorcar[num]!=0) {
-             inorden+=vectorcar[2*num+1]+"->";
+             
               inorden+=vectorcar[num]+"->";
-               inorden+=vectorcar[2*num+2]+"->";
+               
                 estpre1++;
               
                if (estpre1<100) {
@@ -200,10 +200,9 @@ static int estpre=0,estpre1=0;
       try{
           if (vectorcar[num]!=0) {
               
-               postorden+=vectorcar[2*num+1]+"->";
-              
+               postorden+=vectorcar[2*num+1]+"->";              
                postorden+=vectorcar[2*num+2]+"->";
-                postorden+=vectorcar[num]+"->";
+               
                estpre1++;
                if (estpre1<100) {
                    posorde(vectorcar,estpre1);
